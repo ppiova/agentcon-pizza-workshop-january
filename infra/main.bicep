@@ -39,8 +39,8 @@ resource staticSite 'Microsoft.Web/staticSites@2023-01-01' = {
     // Not linked to a Git provider; azd handles deployment.
     repositoryToken: ''
     buildProperties: {
-      appLocation: '.'
-      outputLocation: 'docs/.vitepress/dist'
+      appLocation: 'docs'
+      outputLocation: '.vitepress/dist'
     }
   }
 }

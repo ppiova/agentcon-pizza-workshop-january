@@ -8,7 +8,7 @@ workflows:
       - azd: deploy --all
 services:
   web:
-    project: .
+    project: ./docs
     language: js
     host: staticwebapp
 infra:

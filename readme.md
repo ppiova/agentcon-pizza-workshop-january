@@ -60,6 +60,14 @@ azd up
 
 When prompted for a location, use `westus2` (Static Web Apps isn't available in all regions).
 
+Local docs dev (optional):
+
+```bash
+cd docs
+npm ci
+npm run dev
+```
+
 ## Workshop Goal  
 
 By the end of this 2-hour session, you’ll know how to:  
