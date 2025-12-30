@@ -1,0 +1,1 @@
+https://ca-pizza-mcp-rh4p2gfg7ewoq.salmonwater-dc17e20b.eastus2.azurecontainerapps.io/sse

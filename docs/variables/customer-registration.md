@@ -1,0 +1,1 @@
+https://yellow-sand-0f6eceb0f.2.azurestaticapps.net

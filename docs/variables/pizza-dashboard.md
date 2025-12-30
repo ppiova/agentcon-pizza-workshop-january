@@ -1,0 +1,1 @@
+https://blue-dune-03b8c4b0f.4.azurestaticapps.net
