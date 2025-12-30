@@ -1,0 +1,15 @@
+name: agentcon-pizza-workshop-january
+metadata:
+  template: agentcon-pizza-workshop-january@0.0.0
+workflows:
+  up:
+    steps:
+      - azd: provision
+      - azd: deploy --all
+services:
+  web:
+    project: .
+    language: js
+    host: staticwebapp
+infra:
+  path: ./infra

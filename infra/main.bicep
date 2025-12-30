@@ -1,12 +1,12 @@
 targetScope = 'resourceGroup'
 
+@description('Environment name used by azd for resource naming.')
+param environmentName string
+
 @description('Azure region for the Static Web App.')
 param location string = 'westus'
 
-@description('Optional name prefix used to generate a globally-unique Static Web App name when staticSiteName is empty.')
-param namePrefix string = 'swa-agentcon-pizza-workshop'
-
-@description('Static Web App name override. If empty, a unique name is generated from namePrefix + uniqueString(resourceGroup().id).')
+@description('Static Web App name override. If empty, a unique name is generated from environmentName + uniqueString(resourceGroup().id).')
 param staticSiteName string = ''
 
 @description('SKU for Azure Static Web Apps.')
@@ -20,17 +20,13 @@ param sku string = 'Free'
 param tags object = {}
 
 var effectiveStaticSiteName = empty(staticSiteName)
-  ? toLower('${namePrefix}-${uniqueString(resourceGroup().id)}')
+  ? toLower('swa-${environmentName}-${uniqueString(resourceGroup().id)}')
   : staticSiteName
 
-// NOTE:
-// This Bicep creates ONLY the Azure Static Web App resource.
-// It does NOT (and cannot, by itself) create GitHub repository secrets.
-//
-// After deployment:
-// 1) Take the output "deploymentToken" and add it to your GitHub repo as a secret named:
-//      AZURE_STATIC_WEB_APPS_API_TOKEN
-// 2) Run the GitHub Actions workflow in this repo.
+var effectiveTags = union(tags, {
+  'azd-env-name': environmentName
+  'azd-service-name': 'web'
+})
 
 resource staticSite 'Microsoft.Web/staticSites@2023-01-01' = {
   name: effectiveStaticSiteName
@@ -38,17 +34,17 @@ resource staticSite 'Microsoft.Web/staticSites@2023-01-01' = {
   sku: {
     name: sku
   }
-  tags: tags
-  properties: {}
+  tags: effectiveTags
+  properties: {
+    // Not linked to a Git provider; azd handles deployment.
+    repositoryToken: ''
+    buildProperties: {
+      appLocation: '.'
+      outputLocation: 'docs/.vitepress/dist'
+    }
+  }
 }
-
-// Static Web Apps exposes the deployment token via listSecrets.
-// The response is a StringDictionary: { properties: { apiKey: '<token>' } }
-var staticSiteSecrets = listSecrets(staticSite.id, staticSite.apiVersion)
 
 output staticSiteName string = staticSite.name
 output staticSiteDefaultHostname string = staticSite.properties.defaultHostname
 output staticSiteUrl string = 'https://${staticSite.properties.defaultHostname}'
-
-@secure()
-output deploymentToken string = staticSiteSecrets.properties.apiKey
