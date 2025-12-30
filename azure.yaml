@@ -9,6 +9,7 @@ workflows:
 services:
   web:
     project: ./docs
+    dist: .vitepress/dist
     language: js
     host: staticwebapp
 infra:
