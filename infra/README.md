@@ -10,9 +10,9 @@ This creates (or reuses) the Resource Group and deploys the Static Web App insid
 az login --use-device-code
 
 az deployment sub create \
-  -l eastus2 \
+  -l westus \
   -f infra/subscription.bicep \
-  -p location=eastus2 resourceGroupName=rg-agentcon-pizza-workshop-january
+  -p resourceGroupName=rg-agentcon-pizza-workshop-january
 ```
 
 Outputs include:
@@ -24,7 +24,7 @@ Outputs include:
 ```bash
 az login --use-device-code
 
-az group create -n rg-agentcon-pizza-workshop-january -l eastus2
+az group create -n rg-agentcon-pizza-workshop-january -l westus
 
 az deployment group create \
   -g rg-agentcon-pizza-workshop-january \

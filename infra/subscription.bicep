@@ -1,7 +1,7 @@
 targetScope = 'subscription'
 
 @description('Azure region for the Resource Group and Static Web App.')
-param location string
+param location string = 'westus'
 
 @description('Resource Group name to create/use (idempotent).')
 param resourceGroupName string

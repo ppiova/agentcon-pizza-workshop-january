@@ -1,7 +1,7 @@
 targetScope = 'resourceGroup'
 
 @description('Azure region for the Static Web App.')
-param location string = resourceGroup().location
+param location string = 'westus'
 
 @description('Optional name prefix used to generate a globally-unique Static Web App name when staticSiteName is empty.')
 param namePrefix string = 'swa-agentcon-pizza-workshop'
