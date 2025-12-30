@@ -4,7 +4,7 @@ targetScope = 'resourceGroup'
 param environmentName string
 
 @description('Azure region for the Static Web App.')
-param location string = 'westus'
+param location string = 'westus2'
 
 @description('Static Web App name override. If empty, a unique name is generated from environmentName + uniqueString(resourceGroup().id).')
 param staticSiteName string = ''

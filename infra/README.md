@@ -23,4 +23,4 @@ azd up
 Follow the prompts to pick:
 - Subscription
 - Resource group
-- Location (default in Bicep is `westus`)
+- Location (default in Bicep is `westus2`)
