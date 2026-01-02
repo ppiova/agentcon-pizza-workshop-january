@@ -12,7 +12,7 @@ This setup ensures:
 
 ### 1. Fork the Repository  
 1. Go to the official workshop repo:  
-   👉 [https://github.com/GlobalAICommunity/agentcon-pizza-workshop](https://github.com/GlobalAICommunity/agentcon-pizza-workshop)  
+   👉 [https://github.com/ppiova/agentcon-pizza-workshop-january](https://github.com/ppiova/agentcon-pizza-workshop-january)  
 2. Click **Fork** in the top right corner.  
 3. Select your GitHub account as the destination.  
 
